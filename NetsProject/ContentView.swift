@@ -7,32 +7,181 @@
 
 import SwiftUI
 import RealityKit
-
+import ARKit
 struct ContentView : View {
-    var body: some View {
-        return ARViewContainer().edgesIgnoringSafeArea(.all)
+    
+    //Track State of Application:
+    @State private var isPlacementEnabled =  false
+    @State private var selectedModel: String?
+    @State private var modelConfirmedForPlacement: String?
+
+    
+    //List of Names of our Models
+    var models: [String] = ["LemonMeringuePie","Rei","toy_car","cube"]
+//    var models: [Model] = InitialiseListOfModels(listOfNames: modelsStringName)
+    var body: some View{
+        ZStack(alignment:  .bottom) {
+            //Camera for AR View
+            ARViewContainer(modelConfirmedForPlacement: self.$modelConfirmedForPlacement)
+            if (isPlacementEnabled){
+                //UI for Placement for Models
+                PlacementPickerView(isPlacementEnabled: self.$isPlacementEnabled,selectedModel: self.$selectedModel,modelConfirmedForPlacement: self.$modelConfirmedForPlacement )
+            } else{
+                //UI View for ModelsPicker
+                ModelPickerView(models: self.models, isPlacementEnabled: self.$isPlacementEnabled, selectedModel: self.$selectedModel)
+            }
+            
+        }
     }
+    
+//    func InitialiseListOfModels(listOfNames:[String]) -> [Model]{
+//        var listOfModels: [Model]
+//        for name in listOfNames {
+//            let newModel = Model(modelName: name)
+//            listOfModels.append(newModel)
+//        }
+//        return listOfModels
+//    }
 }
 
 struct ARViewContainer: UIViewRepresentable {
+    
+    @Binding var modelConfirmedForPlacement: String?
     
     func makeUIView(context: Context) -> ARView {
         
         let arView = ARView(frame: .zero)
         
-        // Load the "Box" scene from the "Experience" Reality File
-        let boxAnchor = try! Experience.loadBox()
-        
-        // Add the box anchor to the scene
-        arView.scene.anchors.append(boxAnchor)
+        let config = ARWorldTrackingConfiguration()
+        config.planeDetection = [.horizontal,.vertical]
+        config.environmentTexturing =  .automatic
+
+//        Checks whether device supports scene reconstruction(helps improve AR performance, if device doesnt have, APP will crash)
+        if ARWorldTrackingConfiguration.supportsSceneReconstruction(.mesh){
+            config.sceneReconstruction = .mesh
+        }
+
+        arView.session.run(config)
         
         return arView
         
     }
     
-    func updateUIView(_ uiView: ARView, context: Context) {}
+    func updateUIView(_ uiView: ARView, context: Context) {
+        //If let to safely unwrap modelConfirmedForPlacement Optional
+        if let modelName =  self.modelConfirmedForPlacement{
+            print("WANTING TO UPDATE ARView")
+            print("Adding \(modelName) to scene")
+            let fileName: String
+            //Placing Model into an Anchor
+            if modelName == "CosmonautSuit_en"{
+                fileName = modelName + ".reality"
+            } else{
+                fileName = modelName + ".usdz"
+            }
+            let modelEntity = try! ModelEntity.load(named: fileName)
+            let anchorEntity = AnchorEntity(plane: .any)
+            anchorEntity.addChild(modelEntity)
+
+            uiView.scene.addAnchor(anchorEntity)
+            
+            if (!modelEntity.availableAnimations.isEmpty){
+                let modelAnimation = modelEntity.availableAnimations[0]
+                modelEntity.playAnimation(modelAnimation.repeat(duration: .infinity))
+            }
+            
+            DispatchQueue.main.async {
+                self.modelConfirmedForPlacement = nil
+            }
+        }
+    }
     
 }
+
+struct ModelPickerView: View {
+    var models: [String]
+    
+    @Binding var isPlacementEnabled: Bool
+    @Binding var selectedModel: String?
+
+    
+    var body: some View{
+        ScrollView(.horizontal,showsIndicators: false){
+            HStack(spacing: 30){
+                ForEach(0..<self.models.count) {
+                    index in
+                    Button(action: {
+                        print("Selected Model with name: \(self.models[index])")
+                        self.isPlacementEnabled = true
+                        self.selectedModel = self.models[index]
+                    }, label: {
+                        Image(uiImage: UIImage(named: self.models[index])!)
+                            .resizable()
+                            .frame(height:80)
+                            .aspectRatio(1/1,contentMode: .fit)
+                            .background(Color.blue)
+                            .cornerRadius(12)
+                    }).buttonStyle(PlainButtonStyle())
+                }
+            }
+        }
+        .padding(20)
+        .background(Color.black.opacity(0.5))
+    }
+}
+
+struct PlacementPickerView: View {
+    
+    //Binding Variable, gives read/write access to PlacementPickerView for variables outside of it's scope
+    @Binding var isPlacementEnabled: Bool
+    @Binding var selectedModel: String?
+    @Binding var modelConfirmedForPlacement: String?
+    
+    var body: some View{
+        HStack{
+            //Cancel Button
+            Button(action: {
+                print("Cancel Placement!")
+                self.cancelPlacementParams()
+            }, label: {
+                Image(systemName: "xmark")
+                    .frame(width: 60, height: 60, alignment: .center)
+                    .font(.title)
+                    .background(Color.white.opacity(0.75))
+                    .cornerRadius(30)
+                    .padding(20)
+            })
+            
+            Button(action: {
+                print("Confirm Placement!")
+                self.confirmPlacementParams()
+            }, label: {
+                Image(systemName: "checkmark")
+                    .frame(width: 60, height: 60, alignment: .center)
+                    .font(.title)
+                    .background(Color.white.opacity(0.75))
+                    .cornerRadius(30)
+                    .padding(20)
+            })
+        }
+    }
+    
+    func confirmPlacementParams(){
+        self.modelConfirmedForPlacement = self.selectedModel
+        self.resetPlacementParams()
+    }
+    
+    func cancelPlacementParams(){
+        self.resetPlacementParams()
+    }
+    
+    func resetPlacementParams(){
+        self.isPlacementEnabled = false
+        self.selectedModel = nil
+    }
+}
+
+
 
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
