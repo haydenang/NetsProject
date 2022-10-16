@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D2AE05C628FC0B8B003EB565 /* pyramid.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D2AE05C328FC0B8B003EB565 /* pyramid.usdz */; };
+		D2AE05C728FC0B8B003EB565 /* testcube.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D2AE05C428FC0B8B003EB565 /* testcube.usdz */; };
+		D2AE05C828FC0B8B003EB565 /* cuboid.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D2AE05C528FC0B8B003EB565 /* cuboid.usdz */; };
 		D2E2F70828E1B035009E0864 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E2F70728E1B035009E0864 /* AppDelegate.swift */; };
 		D2E2F70A28E1B035009E0864 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E2F70928E1B035009E0864 /* ContentView.swift */; };
 		D2E2F70C28E1B035009E0864 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = D2E2F70B28E1B035009E0864 /* Experience.rcproject */; };
@@ -15,12 +18,7 @@
 		D2E2F71B28E1B036009E0864 /* NetsProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E2F71A28E1B036009E0864 /* NetsProjectTests.swift */; };
 		D2E2F72528E1B036009E0864 /* NetsProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E2F72428E1B036009E0864 /* NetsProjectUITests.swift */; };
 		D2E2F72728E1B036009E0864 /* NetsProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E2F72628E1B036009E0864 /* NetsProjectUITestsLaunchTests.swift */; };
-		D2E2F73828E1DDDB009E0864 /* toy_car.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D2E2F73428E1DDDB009E0864 /* toy_car.usdz */; };
-		D2E2F73928E1DDDB009E0864 /* LemonMeringuePie.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D2E2F73528E1DDDB009E0864 /* LemonMeringuePie.usdz */; };
-		D2E2F73A28E1DDDB009E0864 /* CosmonautSuit_en.reality in Resources */ = {isa = PBXBuildFile; fileRef = D2E2F73628E1DDDB009E0864 /* CosmonautSuit_en.reality */; };
-		D2E2F73B28E1DDDB009E0864 /* Rei.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D2E2F73728E1DDDB009E0864 /* Rei.usdz */; };
 		D2E2F73D28E1E92C009E0864 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E2F73C28E1E92C009E0864 /* Model.swift */; };
-		D2E2F73F28E58CD2009E0864 /* cube.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D2E2F73E28E58CD2009E0864 /* cube.usdz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D2AE05C328FC0B8B003EB565 /* pyramid.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = pyramid.usdz; sourceTree = "<group>"; };
+		D2AE05C428FC0B8B003EB565 /* testcube.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = testcube.usdz; sourceTree = "<group>"; };
+		D2AE05C528FC0B8B003EB565 /* cuboid.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = cuboid.usdz; sourceTree = "<group>"; };
 		D2E2F70428E1B035009E0864 /* NetsProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetsProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2E2F70728E1B035009E0864 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2E2F70928E1B035009E0864 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,12 +53,7 @@
 		D2E2F72028E1B036009E0864 /* NetsProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetsProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2E2F72428E1B036009E0864 /* NetsProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetsProjectUITests.swift; sourceTree = "<group>"; };
 		D2E2F72628E1B036009E0864 /* NetsProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetsProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		D2E2F73428E1DDDB009E0864 /* toy_car.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = toy_car.usdz; path = ../../../../../Downloads/toy_car.usdz; sourceTree = "<group>"; };
-		D2E2F73528E1DDDB009E0864 /* LemonMeringuePie.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = LemonMeringuePie.usdz; path = ../../../../../Downloads/LemonMeringuePie.usdz; sourceTree = "<group>"; };
-		D2E2F73628E1DDDB009E0864 /* CosmonautSuit_en.reality */ = {isa = PBXFileReference; lastKnownFileType = file; name = CosmonautSuit_en.reality; path = ../../../../../Downloads/CosmonautSuit_en.reality; sourceTree = "<group>"; };
-		D2E2F73728E1DDDB009E0864 /* Rei.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = Rei.usdz; path = ../../../../../Downloads/Rei.usdz; sourceTree = "<group>"; };
 		D2E2F73C28E1E92C009E0864 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		D2E2F73E28E58CD2009E0864 /* cube.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = cube.usdz; path = ../../../../../Downloads/cube.usdz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,11 +143,9 @@
 		D2E2F73328E1DD78009E0864 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D2E2F73E28E58CD2009E0864 /* cube.usdz */,
-				D2E2F73628E1DDDB009E0864 /* CosmonautSuit_en.reality */,
-				D2E2F73528E1DDDB009E0864 /* LemonMeringuePie.usdz */,
-				D2E2F73728E1DDDB009E0864 /* Rei.usdz */,
-				D2E2F73428E1DDDB009E0864 /* toy_car.usdz */,
+				D2AE05C528FC0B8B003EB565 /* cuboid.usdz */,
+				D2AE05C328FC0B8B003EB565 /* pyramid.usdz */,
+				D2AE05C428FC0B8B003EB565 /* testcube.usdz */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -260,13 +254,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2E2F73B28E1DDDB009E0864 /* Rei.usdz in Resources */,
-				D2E2F73A28E1DDDB009E0864 /* CosmonautSuit_en.reality in Resources */,
-				D2E2F73F28E58CD2009E0864 /* cube.usdz in Resources */,
 				D2E2F71128E1B036009E0864 /* Preview Assets.xcassets in Resources */,
+				D2AE05C728FC0B8B003EB565 /* testcube.usdz in Resources */,
+				D2AE05C628FC0B8B003EB565 /* pyramid.usdz in Resources */,
 				D2E2F70E28E1B036009E0864 /* Assets.xcassets in Resources */,
-				D2E2F73928E1DDDB009E0864 /* LemonMeringuePie.usdz in Resources */,
-				D2E2F73828E1DDDB009E0864 /* toy_car.usdz in Resources */,
+				D2AE05C828FC0B8B003EB565 /* cuboid.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

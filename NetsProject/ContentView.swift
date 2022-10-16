@@ -24,7 +24,6 @@ struct ContentView : View {
     
 
     //List of Names of our Models
-
     var models: [String] = ["pyramid","testcube","cuboid"]
 //    var models: [Model] = InitialiseListOfModels(listOfNames: modelsStringName)
     var body: some View{
@@ -59,7 +58,6 @@ struct ContentView : View {
 }
 
 struct ARViewContainer: UIViewRepresentable {
-
     @Binding var modelConfirmedForPlacement: String?
     
     func makeUIView(context: Context) -> ARView {
@@ -81,7 +79,7 @@ struct ARViewContainer: UIViewRepresentable {
         
     }
     
-    func updateUIView(_ uiView: ARView, context: Context) {
+    func updateUIVew(_ uiView: ARView, context: Context) {
         //If let to safely unwrap modelConfirmedForPlacement Optional
         if let modelName =  self.modelConfirmedForPlacement{
             print("WANTING TO UPDATE ARView")
@@ -94,6 +92,7 @@ struct ARViewContainer: UIViewRepresentable {
             anchorEntity.addChild(modelEntity)
 
             
+
             //Ensure only one Entity is in the scene
             let currentAnchors = uiView.scene.anchors
             if (currentAnchors.isEmpty){
@@ -105,6 +104,8 @@ struct ARViewContainer: UIViewRepresentable {
             }
             
             if (!modelEntity.availableAnimations.isEmpty){
+                print("This is the list of Animations")
+                print(modelEntity.availableAnimations)
                 let modelAnimation = modelEntity.availableAnimations[0]
                 modelEntity.playAnimation(modelAnimation.repeat(duration: .infinity))
             }
