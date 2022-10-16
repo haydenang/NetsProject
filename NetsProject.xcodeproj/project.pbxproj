@@ -10,6 +10,7 @@
 		D2AE05C628FC0B8B003EB565 /* pyramid.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D2AE05C328FC0B8B003EB565 /* pyramid.usdz */; };
 		D2AE05C728FC0B8B003EB565 /* testcube.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D2AE05C428FC0B8B003EB565 /* testcube.usdz */; };
 		D2AE05C828FC0B8B003EB565 /* cuboid.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D2AE05C528FC0B8B003EB565 /* cuboid.usdz */; };
+		D2AE05CA28FC15AD003EB565 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AE05C928FC15AD003EB565 /* MainView.swift */; };
 		D2E2F70828E1B035009E0864 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E2F70728E1B035009E0864 /* AppDelegate.swift */; };
 		D2E2F70A28E1B035009E0864 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E2F70928E1B035009E0864 /* ContentView.swift */; };
 		D2E2F70C28E1B035009E0864 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = D2E2F70B28E1B035009E0864 /* Experience.rcproject */; };
@@ -42,6 +43,7 @@
 		D2AE05C328FC0B8B003EB565 /* pyramid.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = pyramid.usdz; sourceTree = "<group>"; };
 		D2AE05C428FC0B8B003EB565 /* testcube.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = testcube.usdz; sourceTree = "<group>"; };
 		D2AE05C528FC0B8B003EB565 /* cuboid.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = cuboid.usdz; sourceTree = "<group>"; };
+		D2AE05C928FC15AD003EB565 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D2E2F70428E1B035009E0864 /* NetsProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetsProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2E2F70728E1B035009E0864 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2E2F70928E1B035009E0864 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				D2E2F70D28E1B036009E0864 /* Assets.xcassets */,
 				D2E2F70F28E1B036009E0864 /* Preview Content */,
 				D2E2F73C28E1E92C009E0864 /* Model.swift */,
+				D2AE05C928FC15AD003EB565 /* MainView.swift */,
 			);
 			path = NetsProject;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				D2E2F70A28E1B035009E0864 /* ContentView.swift in Sources */,
 				D2E2F70828E1B035009E0864 /* AppDelegate.swift in Sources */,
 				D2E2F70C28E1B035009E0864 /* Experience.rcproject in Sources */,
+				D2AE05CA28FC15AD003EB565 /* MainView.swift in Sources */,
 				D2E2F73D28E1E92C009E0864 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
