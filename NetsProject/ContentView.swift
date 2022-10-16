@@ -17,7 +17,7 @@ struct ContentView : View {
 
     
     //List of Names of our Models
-    var models: [String] = ["LemonMeringuePie","Rei","toy_car","cube"]
+    var models: [String] = ["LemonMeringuePie","Rei","toy_car","cube","cube2","pyramid","testcube","cuboid"]
 //    var models: [Model] = InitialiseListOfModels(listOfNames: modelsStringName)
     var body: some View{
         ZStack(alignment:  .bottom) {
@@ -45,6 +45,45 @@ struct ContentView : View {
 }
 
 struct ARViewContainer: UIViewRepresentable {
+    func updateUIView(_ uiView: ARView, context: Context) {
+        //If let to safely unwrap modelConfirmedForPlacement Optional
+        if let modelName =  self.modelConfirmedForPlacement{
+            print("WANTING TO UPDATE ARView")
+            print("Adding \(modelName) to scene")
+            let fileName: String
+            //Placing Model into an Anchor
+            if modelName == "CosmonautSuit_en"{
+                fileName = modelName + ".reality"
+            } else{
+                fileName = modelName + ".usdz"
+            }
+            let modelEntity = try! ModelEntity.load(named: fileName)
+            let anchorEntity = AnchorEntity(plane: .any)
+            anchorEntity.addChild(modelEntity)
+            
+            //Ensure only one Entity is in the scene
+            let currentAnchors = uiView.scene.anchors
+            if (currentAnchors.isEmpty){
+                uiView.scene.addAnchor(anchorEntity)
+            }
+            else{
+                uiView.scene.removeAnchor(currentAnchors.first!)
+                uiView.scene.addAnchor(anchorEntity)
+            }
+            
+            if (!modelEntity.availableAnimations.isEmpty){
+                print("This is the list of Animations")
+                print(modelEntity.availableAnimations)
+                let modelAnimation = modelEntity.availableAnimations[0]
+                modelEntity.playAnimation(modelAnimation.repeat(duration: .infinity))
+            }
+            
+            DispatchQueue.main.async {
+                self.modelConfirmedForPlacement = nil
+            }
+        }
+    }
+    
     
     @Binding var modelConfirmedForPlacement: String?
     
@@ -67,7 +106,7 @@ struct ARViewContainer: UIViewRepresentable {
         
     }
     
-    func updateUIView(_ uiView: ARView, context: Context) {
+    func updateUIVew(_ uiView: ARView, context: Context) {
         //If let to safely unwrap modelConfirmedForPlacement Optional
         if let modelName =  self.modelConfirmedForPlacement{
             print("WANTING TO UPDATE ARView")
@@ -83,9 +122,21 @@ struct ARViewContainer: UIViewRepresentable {
             let anchorEntity = AnchorEntity(plane: .any)
             anchorEntity.addChild(modelEntity)
 
+            
+            let currentAnchors = uiView.scene.anchors
+            print(currentAnchors)
             uiView.scene.addAnchor(anchorEntity)
+//            if (currentAnchors.isEmpty){
+//                uiView.scene.addAnchor(anchorEntity)
+//            }
+//            else{
+//                uiView.scene.removeAnchor(currentAnchors.first!)
+//                uiView.scene.addAnchor(anchorEntity)
+//            }
             
             if (!modelEntity.availableAnimations.isEmpty){
+                print("This is the list of Animations")
+                print(modelEntity.availableAnimations)
                 let modelAnimation = modelEntity.availableAnimations[0]
                 modelEntity.playAnimation(modelAnimation.repeat(duration: .infinity))
             }
