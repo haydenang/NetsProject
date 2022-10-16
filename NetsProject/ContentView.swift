@@ -52,11 +52,7 @@ struct ARViewContainer: UIViewRepresentable {
             print("Adding \(modelName) to scene")
             let fileName: String
             //Placing Model into an Anchor
-            if modelName == "CosmonautSuit_en"{
-                fileName = modelName + ".reality"
-            } else{
-                fileName = modelName + ".usdz"
-            }
+            fileName = modelName + ".usdz"
             let modelEntity = try! ModelEntity.load(named: fileName)
             let anchorEntity = AnchorEntity(plane: .any)
             anchorEntity.addChild(modelEntity)
