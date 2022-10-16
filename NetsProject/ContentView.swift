@@ -14,10 +14,18 @@ struct ContentView : View {
     @State private var isPlacementEnabled =  false
     @State private var selectedModel: String?
     @State private var modelConfirmedForPlacement: String?
-
     
+    var mdels: [String]? {
+        let fileManager = FileManager.default
+        let currentPath = fileManager.currentDirectoryPath
+        print("Current path: \(currentPath)")
+        return []
+    }
+    
+
     //List of Names of our Models
-    var models: [String] = ["LemonMeringuePie","Rei","toy_car","cube"]
+
+    var models: [String] = ["pyramid","testcube","cuboid"]
 //    var models: [Model] = InitialiseListOfModels(listOfNames: modelsStringName)
     var body: some View{
         ZStack(alignment:  .bottom) {
@@ -28,7 +36,7 @@ struct ContentView : View {
                 PlacementPickerView(isPlacementEnabled: self.$isPlacementEnabled,selectedModel: self.$selectedModel,modelConfirmedForPlacement: self.$modelConfirmedForPlacement )
             } else{
                 //UI View for ModelsPicker
-                ModelPickerView(models: self.models, isPlacementEnabled: self.$isPlacementEnabled, selectedModel: self.$selectedModel)
+                ModelPickerView(models: self.models,isPlacementEnabled: self.$isPlacementEnabled, selectedModel: self.$selectedModel)
             }
             
         }
@@ -42,10 +50,16 @@ struct ContentView : View {
 //        }
 //        return listOfModels
 //    }
+//    func loadModelsFromModels() -> [String]? {
+//        let fileManager = FileManager.default
+//        let currentPath = fileManager.currentDirectoryPath
+//        print("Current path: \(currentPath)")
+//        return []
+//    }
 }
 
 struct ARViewContainer: UIViewRepresentable {
-    
+
     @Binding var modelConfirmedForPlacement: String?
     
     func makeUIView(context: Context) -> ARView {
@@ -74,16 +88,21 @@ struct ARViewContainer: UIViewRepresentable {
             print("Adding \(modelName) to scene")
             let fileName: String
             //Placing Model into an Anchor
-            if modelName == "CosmonautSuit_en"{
-                fileName = modelName + ".reality"
-            } else{
-                fileName = modelName + ".usdz"
-            }
+            fileName = modelName + ".usdz"
             let modelEntity = try! ModelEntity.load(named: fileName)
             let anchorEntity = AnchorEntity(plane: .any)
             anchorEntity.addChild(modelEntity)
 
-            uiView.scene.addAnchor(anchorEntity)
+            
+            //Ensure only one Entity is in the scene
+            let currentAnchors = uiView.scene.anchors
+            if (currentAnchors.isEmpty){
+                uiView.scene.addAnchor(anchorEntity)
+            }
+            else{
+                uiView.scene.removeAnchor(currentAnchors.first!)
+                uiView.scene.addAnchor(anchorEntity)
+            }
             
             if (!modelEntity.availableAnimations.isEmpty){
                 let modelAnimation = modelEntity.availableAnimations[0]
@@ -95,11 +114,12 @@ struct ARViewContainer: UIViewRepresentable {
             }
         }
     }
-    
+
 }
 
 struct ModelPickerView: View {
     var models: [String]
+    
     
     @Binding var isPlacementEnabled: Bool
     @Binding var selectedModel: String?
