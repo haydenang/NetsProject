@@ -58,6 +58,8 @@ struct ContentView : View {
 }
 
 struct ARViewContainer: UIViewRepresentable {
+    
+    
     @Binding var modelConfirmedForPlacement: String?
     
     func makeUIView(context: Context) -> ARView {
@@ -79,7 +81,7 @@ struct ARViewContainer: UIViewRepresentable {
         
     }
     
-    func updateUIVew(_ uiView: ARView, context: Context) {
+    func updateUIView(_ uiView: ARView, context: Context) {
         //If let to safely unwrap modelConfirmedForPlacement Optional
         if let modelName =  self.modelConfirmedForPlacement{
             print("WANTING TO UPDATE ARView")
