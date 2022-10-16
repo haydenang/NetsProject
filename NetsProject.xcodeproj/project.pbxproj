@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D24F100428FBD1F300C551D2 /* testcube.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D24F100328FBD1F300C551D2 /* testcube.usdz */; };
+		D2AE05C028FBE2D9003EB565 /* pyramid.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D2AE05BF28FBE2D9003EB565 /* pyramid.usdz */; };
+		D2AE05C228FBE4E0003EB565 /* cuboid.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D2AE05C128FBE4E0003EB565 /* cuboid.usdz */; };
 		D2E2F70828E1B035009E0864 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E2F70728E1B035009E0864 /* AppDelegate.swift */; };
 		D2E2F70A28E1B035009E0864 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E2F70928E1B035009E0864 /* ContentView.swift */; };
 		D2E2F70C28E1B035009E0864 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = D2E2F70B28E1B035009E0864 /* Experience.rcproject */; };
@@ -21,6 +24,7 @@
 		D2E2F73B28E1DDDB009E0864 /* Rei.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D2E2F73728E1DDDB009E0864 /* Rei.usdz */; };
 		D2E2F73D28E1E92C009E0864 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E2F73C28E1E92C009E0864 /* Model.swift */; };
 		D2E2F73F28E58CD2009E0864 /* cube.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D2E2F73E28E58CD2009E0864 /* cube.usdz */; };
+		D2F9CA2428E6E3BB00DC004C /* cube2.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D2F9CA2328E6E3BB00DC004C /* cube2.usdz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +45,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D24F100328FBD1F300C551D2 /* testcube.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = testcube.usdz; path = ../../../../../Downloads/testcube.usdz; sourceTree = "<group>"; };
+		D2AE05BF28FBE2D9003EB565 /* pyramid.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = pyramid.usdz; path = ../../../../../Downloads/pyramid.usdz; sourceTree = "<group>"; };
+		D2AE05C128FBE4E0003EB565 /* cuboid.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = cuboid.usdz; path = ../../../../../Downloads/cuboid.usdz; sourceTree = "<group>"; };
 		D2E2F70428E1B035009E0864 /* NetsProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetsProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2E2F70728E1B035009E0864 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2E2F70928E1B035009E0864 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +65,7 @@
 		D2E2F73728E1DDDB009E0864 /* Rei.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = Rei.usdz; path = ../../../../../Downloads/Rei.usdz; sourceTree = "<group>"; };
 		D2E2F73C28E1E92C009E0864 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		D2E2F73E28E58CD2009E0864 /* cube.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = cube.usdz; path = ../../../../../Downloads/cube.usdz; sourceTree = "<group>"; };
+		D2F9CA2328E6E3BB00DC004C /* cube2.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = cube2.usdz; path = ../../../../../Downloads/cube2.usdz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +155,10 @@
 		D2E2F73328E1DD78009E0864 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D2AE05C128FBE4E0003EB565 /* cuboid.usdz */,
+				D2AE05BF28FBE2D9003EB565 /* pyramid.usdz */,
+				D24F100328FBD1F300C551D2 /* testcube.usdz */,
+				D2F9CA2328E6E3BB00DC004C /* cube2.usdz */,
 				D2E2F73E28E58CD2009E0864 /* cube.usdz */,
 				D2E2F73628E1DDDB009E0864 /* CosmonautSuit_en.reality */,
 				D2E2F73528E1DDDB009E0864 /* LemonMeringuePie.usdz */,
@@ -261,12 +273,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2E2F73B28E1DDDB009E0864 /* Rei.usdz in Resources */,
+				D2AE05C228FBE4E0003EB565 /* cuboid.usdz in Resources */,
 				D2E2F73A28E1DDDB009E0864 /* CosmonautSuit_en.reality in Resources */,
 				D2E2F73F28E58CD2009E0864 /* cube.usdz in Resources */,
 				D2E2F71128E1B036009E0864 /* Preview Assets.xcassets in Resources */,
 				D2E2F70E28E1B036009E0864 /* Assets.xcassets in Resources */,
 				D2E2F73928E1DDDB009E0864 /* LemonMeringuePie.usdz in Resources */,
+				D24F100428FBD1F300C551D2 /* testcube.usdz in Resources */,
 				D2E2F73828E1DDDB009E0864 /* toy_car.usdz in Resources */,
+				D2F9CA2428E6E3BB00DC004C /* cube2.usdz in Resources */,
+				D2AE05C028FBE2D9003EB565 /* pyramid.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
