@@ -24,7 +24,7 @@ struct ContentView : View {
     
 
     //List of Names of our Models
-    var models: [String] = ["pyramid","testcube","cuboid"]
+    var models: [String] = ["coloredcube","coloredpyramid","coloredcuboid"]
 //    var models: [Model] = InitialiseListOfModels(listOfNames: modelsStringName)
     var body: some View{
         ZStack(alignment:  .bottom) {
@@ -38,7 +38,7 @@ struct ContentView : View {
                 ModelPickerView(models: self.models,isPlacementEnabled: self.$isPlacementEnabled, selectedModel: self.$selectedModel)
             }
             
-        }
+        }.navigationBarHidden(true)
     }
     
 //    func InitialiseListOfModels(listOfNames:[String]) -> [Model]{
@@ -89,28 +89,63 @@ struct ARViewContainer: UIViewRepresentable {
             let fileName: String
             //Placing Model into an Anchor
             fileName = modelName + ".usdz"
-            let modelEntity = try! ModelEntity.load(named: fileName)
-            let anchorEntity = AnchorEntity(plane: .any)
-            anchorEntity.addChild(modelEntity)
-
+            let entity = try! Entity.load(named: fileName)
+            // Creating parent ModelEntity
+            let parentEntity = ModelEntity()
+            parentEntity.addChild(entity)
+           
+            // Anchoring the entity
+            let anchor = AnchorEntity(plane: .any)
+            anchor.addChild(parentEntity)
             
-
-            //Ensure only one Entity is in the scene
+//          Ensure only one Entity is in the scene
             let currentAnchors = uiView.scene.anchors
             if (currentAnchors.isEmpty){
-                uiView.scene.addAnchor(anchorEntity)
+                uiView.scene.addAnchor(anchor)
             }
             else{
                 uiView.scene.removeAnchor(currentAnchors.first!)
-                uiView.scene.addAnchor(anchorEntity)
+                uiView.scene.addAnchor(anchor)
             }
-            
-            if (!modelEntity.availableAnimations.isEmpty){
+           
+            // Playing availableAnimations on repeat
+            if (!entity.availableAnimations.isEmpty){
                 print("This is the list of Animations")
-                print(modelEntity.availableAnimations)
-                let modelAnimation = modelEntity.availableAnimations[0]
-                modelEntity.playAnimation(modelAnimation.repeat(duration: .infinity))
+                print(entity.availableAnimations)
+                let modelAnimation = entity.availableAnimations[0]
+                entity.playAnimation(modelAnimation.repeat(duration: .infinity))
             }
+           
+            // Add a collision component to the parentEntity with a rough shape and appropriate offset for the model that it contains
+            let entityBounds = entity.visualBounds(relativeTo: parentEntity)
+            parentEntity.collision = CollisionComponent(shapes: [ShapeResource.generateBox(size: entityBounds.extents).offsetBy(translation: entityBounds.center)])
+                       
+            // installing gestures for the parentEntity
+            uiView.installGestures([.rotation,.translation],for: parentEntity)
+            
+//            let modelEntity = try! ModelEntity.load(named: fileName)
+//            let anchorEntity = AnchorEntity(plane:.any)
+//            modelEntity.generateCollisionShapes(recursive: true)
+//            anchorEntity.addChild(modelEntity)
+//
+//
+//
+//            //Ensure only one Entity is in the scene
+//            let currentAnchors = uiView.scene.anchors
+//            if (currentAnchors.isEmpty){
+//                uiView.scene.addAnchor(anchorEntity)
+//            }
+//            else{
+//                uiView.scene.removeAnchor(currentAnchors.first!)
+//                uiView.scene.addAnchor(anchorEntity)
+//            }
+//
+//            if (!modelEntity.availableAnimations.isEmpty){
+//                print("This is the list of Animations")
+//                print(modelEntity.availableAnimations)
+//                let modelAnimation = modelEntity.availableAnimations[0]
+//                modelEntity.playAnimation(modelAnimation.repeat(duration: .infinity))
+//            }
             
             DispatchQueue.main.async {
                 self.modelConfirmedForPlacement = nil
